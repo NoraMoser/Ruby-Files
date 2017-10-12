@@ -1,0 +1,5 @@
+T=Something
+C=Else
+F=Focus
+N=Umm
+K=Right
