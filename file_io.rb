@@ -1,28 +1,34 @@
-require 'yaml'
+require 'YAML'
 
-f1 = File.open('car_makes.txt', 'r+')
-# puts f1.read
-f2 = File.open('car_models.txt', 'r+')
-# puts f2.read
+makes = File.open("car_makes.txt", "r+")
+models = File.open("car_models.txt", "r+")
 
-hash = Hash.new
-array = []
-array2 = []
+# puts makes.read
+# puts models.read
 
 
 
-f2.each do |models|
-    array = models.split('=')
-    # puts array
-    f1.each do |makes|
-        array2 = makes.chomp
-        # puts array2
-            hash[array2] = [array[1].chomp]
-    end
+makesArr = []
+modelsArr = []
+modelOnly = []
+makesOnly = []
+
+# split models into array of arrays
+models.each do |i|
+   modelsArr = i.split('=')
+#    puts modelsArr[1]
+    modelOnly << modelsArr[1].chomp
 end
-print "My hash: #{hash}"
+# puts modelOnly
 
 
+makes.each do |x|
+    makesArr = x.chomp
+    # puts makesArr
+    # Make hash by targeting values to be keys and values
+    makesOnly << x.chomp
+end
+# puts makesOnly
 
-# split the car_models at the = 
-# and then .each through makes first see if == index[0] model and assign to hash (hash[make = model])
+cars = Hash[makesOnly.zip modelOnly]
+puts cars
